@@ -1,1 +1,4 @@
-<div>Super Melon</div>
+{% for melon, qty in melons %}
+<div>{{melon.common_name}}
+<p>Qty: {{qty}}</p></div>
+  {% endfor %}

@@ -74,7 +74,10 @@ def checkout():
 
 @app.route("/cart_items")
 def show_cart_items():
-    return render_template("_cart_items.html")
+    melons = [ (model.get_melon_by_id(int(id)), count) for id, count in session.setdefault("cart", {}).items() ]
+    total = sum([melon[0].price * melon[1] for melon in melons])
+    return render_template("_cart_items.html", melons = melons, total=total)
+    #return render_template("_cart_items.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
